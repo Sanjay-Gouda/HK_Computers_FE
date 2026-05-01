@@ -1,12 +1,34 @@
 
+'use client'
 
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Login } from "@/services/ajax-services";
+
 
 export default function LoginPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const payload= {
+      userName: username,
+      password: password
+    }
+    // TODO: Call login API here
+  const res = await Login(payload)
+    console.log('Login response:', res)
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <form className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm flex flex-col gap-6">
+      <form
+        className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm flex flex-col gap-6"
+        onSubmit={handleSubmit}
+      >
         <h1 className="text-3xl font-bold text-center mb-4">Login</h1>
         <div className="flex flex-col gap-2">
           <label htmlFor="username" className="text-sm font-medium">Username</label>
@@ -16,6 +38,8 @@ export default function LoginPage() {
             type="text"
             placeholder="Enter your username"
             required
+            value={username}
+            onChange={e => setUsername(e.target.value)}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -26,6 +50,8 @@ export default function LoginPage() {
             type="password"
             placeholder="Enter your password"
             required
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
         <Button type="submit" className="mt-4 w-full">Login</Button>
@@ -33,5 +59,6 @@ export default function LoginPage() {
     </div>
   );
 }
+
 
 
