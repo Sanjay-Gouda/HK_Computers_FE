@@ -45,20 +45,16 @@ const data = {
       url: "/dashboard",
       icon: <IconDashboard />,
     },
-    {
-      title: "Records",
-      url: "/dashboard/records",
-      icon: <IconListDetails />,
-    },
+
     {
       title: "New Purchase",
-      url: "/dashboard/new-purchase",
+      url: "",
       icon: <IconChartBar />,
       items: [
-        // {
-        //   title: "New Purchase",
-        //   url: "/dashboard/new-purchase",
-        // },
+        {
+          title: "View",
+          url: "/dashboard/new-purchase",
+        },
         {
           title: "Create",
           url: "/dashboard/new-purchase/create",
@@ -66,98 +62,104 @@ const data = {
       ],
     },
     {
-      title: "Projects",
-      url: "#",
-      icon: <IconFolder />,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: <IconUsers />,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      url: "#",
+      title: "Repairing",
+      url: "",
+      icon: <IconChartBar />,
       items: [
         {
-          title: "Active Proposals",
-          url: "#",
+          title: "View",
+          url: "/dashboard/repairing",
         },
         {
-          title: "Archived",
-          url: "#",
+          title: "Create",
+          url: "/dashboard/repairing/create",
         },
       ],
     },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
+   
   ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: <IconSettings />,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: <IconHelp />,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: <IconSearch />,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: <IconDatabase />,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: <IconReport />,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: <IconFileWord />,
-    },
-  ],
+  // navClouds: [
+  //   {
+  //     title: "Capture",
+  //     icon: IconCamera,
+  //     isActive: true,
+  //     url: "#",
+  //     items: [
+  //       {
+  //         title: "Active Proposals",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Archived",
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Proposal",
+  //     icon: IconFileDescription,
+  //     url: "#",
+  //     items: [
+  //       {
+  //         title: "Active Proposals",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Archived",
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Prompts",
+  //     icon: IconFileAi,
+  //     url: "#",
+  //     items: [
+  //       {
+  //         title: "Active Proposals",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Archived",
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  // ],
+  // navSecondary: [
+  //   {
+  //     title: "Settings",
+  //     url: "#",
+  //     icon: <IconSettings />,
+  //   },
+  //   {
+  //     title: "Get Help",
+  //     url: "#",
+  //     icon: <IconHelp />,
+  //   },
+  //   {
+  //     title: "Search",
+  //     url: "#",
+  //     icon: <IconSearch />,
+  //   },
+  // ],
+  // documents: [
+  //   {
+  //     name: "Data Library",
+  //     url: "#",
+  //     icon: <IconDatabase />,
+  //   },
+  //   {
+  //     name: "Reports",
+  //     url: "#",
+  //     icon: <IconReport />,
+  //   },
+  //   {
+  //     name: "Word Assistant",
+  //     url: "#",
+  //     icon: <IconFileWord />,
+  //   },
+  // ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -175,8 +177,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {/* <NavDocuments items={data.documents} /> */}
+        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

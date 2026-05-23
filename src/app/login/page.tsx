@@ -1,13 +1,17 @@
 
 'use client'
 
-import { useState } from "react";
+import { use, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Login } from "@/services/ajax-services";
+import { useRouter } from "next/navigation";
 
 
 export default function LoginPage() {
+
+  const router = useRouter(); 
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,7 +24,9 @@ export default function LoginPage() {
     }
     // TODO: Call login API here
   const res = await Login(payload)
-    console.log('Login response:', res)
+
+  router.push('/dashboard')
+
   };
 
   return (

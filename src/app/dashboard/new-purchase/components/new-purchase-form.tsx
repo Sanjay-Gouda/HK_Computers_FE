@@ -69,6 +69,7 @@ export default function PurchaseForm({ initialData, paramsId='', isViewMode=fals
         totalCost: Number(totalCost),
         paidAmount: 1000
       }
+      // debugger;
       try{
         const res = initialData ?  await updatePurchaseItem(paramsId, payload) : await createPurchaseItem(payload)
           if(res?.status === ResponseStatus.SUCCESS){
