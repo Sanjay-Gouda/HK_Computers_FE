@@ -1,10 +1,6 @@
-
-
-
 // Base URL for API requests
-// export const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
-export const BASE_URL = 'http://localhost:8001'; // Adjust as needed for development
-
+export const BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8001";
 
 export async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
     const url = `${BASE_URL}${endpoint}`;

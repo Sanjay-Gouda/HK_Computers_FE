@@ -11,6 +11,8 @@ import type {
   RepairingDataResponse,
   ViewRepairingDataResponse,
 } from "@/types/repairing-data";
+import { LoginResponse } from "@/types/auth";
+
 
 const { LOGIN ,LOGOUT} = endpoints;
 
@@ -18,14 +20,19 @@ export const Login = async (payload: {
   userName: string;
   password: string;
 }) => {
-  const response = await apiFetch(LOGIN, {
-    method: "POST",
-    body: JSON.stringify(payload),
-    credentials: "include", // Include cookies for authentication
-
-  });
-
-  return response;
+  try{
+    const response:LoginResponse = await apiFetch(LOGIN, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      credentials: "include", // Include cookies for authentication
+  
+    });
+  
+    return response;
+  }catch(err){
+    console.log("Error during login:", err);
+    throw err
+  }
 };
 
 export const logout = async () => {
