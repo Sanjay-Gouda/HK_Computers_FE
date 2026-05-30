@@ -2,11 +2,12 @@ import ReportTable from "@/components/report-table";
 import { repairingColumnData } from "./components/repairing-columns";
 import { getAllRepairingItems } from "@/services/ajax-services";
 import { RepairingDataResponse } from "@/types/repairing-data";
+import { connection } from "next/server";
 
 export default async function RepairingPage() {
+  await connection();
 
   const res:RepairingDataResponse = await getAllRepairingItems()
-  console.log("Repairing items:", res);
 
   return (
       <div className="p-6">
