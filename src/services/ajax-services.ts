@@ -61,9 +61,7 @@ export const getAllPurchaseItems = async (token:string | undefined): Promise<Pur
     endpoints.GET_ALL_PURCHASE_ITEMS,
     {
       method: "GET",
-       headers:{
-        Cookie: `token=${token}`,
-       }
+      headers: token ? { Cookie: `token=${token}` } : undefined,
     },
   );
 
