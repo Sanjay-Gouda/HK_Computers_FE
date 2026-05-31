@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Login } from "@/services/ajax-services";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
+import { loginAction } from "./actions";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -19,24 +20,20 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
 
-    const payload = {
-      userName: username,
-      password: password,
-    };
-    // TODO: Call login API here
+    try {
+      const res = await loginAction({ userName: username, password });
+      
 
-    const res = await Login(payload);
-    
-
-    if (res.status === "SUCCESS") {
-      toast.success("Login successful!");
-      setLoading(false);
-      router.push("/dashboard");
-    } else {
-      toast.error(res.message || "Login failed. Please try again.",);
+      if (res.status === "SUCCESS") {
+        router.push("/dashboard");
+        setLoading(false);
+      } else {
+        setLoading(false);
+      }
+    } catch (err) {
+      toast.error("Login failed. Please check your credentials and try again.");
       setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
