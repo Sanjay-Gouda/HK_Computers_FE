@@ -28,7 +28,7 @@ type RepairingFormProps = {
   isViewMode?: boolean
 }
 
-const repairStatusOptions = ["Pending", "In Progress", "Completed",]
+const repairStatusOptions = ["Pending", "InProgress", "Completed",]
 const paymentStatusOptions = [ "Paid", "UnPaid", "PartiallyPaid"  ]
 
 export default function RepairingForm({
