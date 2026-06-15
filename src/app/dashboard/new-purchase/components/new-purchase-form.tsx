@@ -1,7 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   CreatePurchasePayload,
   ResponseStatus,
@@ -42,6 +42,21 @@ export default function PurchaseForm({
   const router = useRouter();
 
   const [form, setForm] = useState(initialFormState);
+
+  useEffect(() => {
+    const price = form.purchasePrice !== "" ? Number(form.purchasePrice) : NaN;
+    const qty = form.quantity !== "" ? Number(form.quantity) : NaN;
+
+    if (!isNaN(price) || !isNaN(qty)) {
+      const total = (isNaN(price) ? 0 : price) * (isNaN(qty) ? 0 : qty);
+      const totalStr = String(total);
+      if (form.totalCost !== totalStr) {
+        setForm((prev) => ({ ...prev, totalCost: totalStr }));
+      }
+    } else if (form.totalCost !== "") {
+      setForm((prev) => ({ ...prev, totalCost: "" }));
+    }
+  }, [form.purchasePrice, form.quantity]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -270,7 +285,7 @@ export default function PurchaseForm({
               value={form.totalCost}
               onChange={handleChange}
               disabled={isViewMode}
-              required
+              readOnly
             />
           </div>
         </div>
