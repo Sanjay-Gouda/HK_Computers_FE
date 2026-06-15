@@ -26,6 +26,7 @@ type RepairingFormProps = {
   initialData?: ViewRepairingDataResponse["data"]
   paramsId?: string
   isViewMode?: boolean
+  token?: string
 }
 
 const repairStatusOptions = ["Pending", "InProgress", "Completed",]
@@ -35,6 +36,7 @@ export default function RepairingForm({
   initialData,
   paramsId = "",
   isViewMode = false,
+  token
 }: RepairingFormProps) {
   const router = useRouter()
 
@@ -78,7 +80,7 @@ export default function RepairingForm({
 
     try {
       const res = initialData
-        ? await updateRepairingItem(paramsId, payload)
+        ? await updateRepairingItem(paramsId, payload, token)
         : await createRepairingItem(payload)
 
       if (res?.status === ResponseStatus.SUCCESS) {

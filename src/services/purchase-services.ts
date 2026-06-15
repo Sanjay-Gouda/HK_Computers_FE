@@ -67,7 +67,7 @@ export const viewPurchaseItem = async (
   }
 };
 
-export const updatePurchaseItem = async (id: string, payload: CreatePurchasePayload) => {
+export const updatePurchaseItem = async (id: string, payload: CreatePurchasePayload,token: string | undefined) => {
   try {
     const response = await apiFetch<ViewPurchaseDataResponse>(
       endpoints.UPDATE_PURCHASE(id),
@@ -75,6 +75,7 @@ export const updatePurchaseItem = async (id: string, payload: CreatePurchasePayl
         method: "PUT",
         body: JSON.stringify(payload),
          credentials: "include",
+        headers: token ? { Cookie: `token=${token}` } : undefined,
       },
     );
 

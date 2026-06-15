@@ -74,6 +74,7 @@ export const viewRepairingItem = async (
 export const updateRepairingItem = async (
   id: string,
   payload: CreateRepairingPayload,
+  token?: string | undefined,
 ): Promise<ViewRepairingDataResponse> => {
   try {
     const response = await apiFetch<ViewRepairingDataResponse>(
@@ -82,6 +83,9 @@ export const updateRepairingItem = async (
         method: "PUT",
         body: JSON.stringify(payload),
         credentials: "include",
+        headers:{
+          Cookie: `token=${token}`,
+        }
       },
     )
 

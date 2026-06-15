@@ -20,5 +20,5 @@ export default async function EditRepairingPage({ params }: Props) {
   const res: ViewRepairingDataResponse = await viewRepairingItem(id,token)
   const extractedData: RepairingData = res.data
 
-  return <RepairingForm initialData={extractedData} paramsId={id} />
+  return <RepairingForm initialData={extractedData} paramsId={id} token={token} />
 }

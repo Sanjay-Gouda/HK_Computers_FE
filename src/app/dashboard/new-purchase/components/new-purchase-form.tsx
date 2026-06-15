@@ -14,16 +14,19 @@ import {
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
+
 type NewPurchaseFormProps = {
   initialData?: ViewPurchaseDataResponse["data"];
   paramsId?: string;
   isViewMode?: boolean;
+  token?: string;
 };
 
 export default function PurchaseForm({
   initialData,
   paramsId = "",
   isViewMode = false,
+  token,
 }: NewPurchaseFormProps) {
   const initialFormState = {
     firstName: initialData?.firstName || "",
@@ -95,7 +98,7 @@ export default function PurchaseForm({
     // debugger;
     try {
       const res = initialData
-        ? await updatePurchaseItem(paramsId, payload)
+        ? await updatePurchaseItem(paramsId, payload, token)
         : await createPurchaseItem(payload);
       if (res?.status === ResponseStatus.SUCCESS) {
         toast.success("Purchase created successfully!");

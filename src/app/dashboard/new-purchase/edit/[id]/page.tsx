@@ -25,7 +25,7 @@ export default async function EditPurchasePage({params}: Props) {
 
     return (
         <>
-        <PurchaseForm initialData={extractedData} paramsId={id}  />
+            <PurchaseForm initialData={extractedData} paramsId={id} token={token} />
         </>
     );
 }
