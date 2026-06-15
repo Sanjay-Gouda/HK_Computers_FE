@@ -43,6 +43,7 @@ export default function PurchaseForm({
 
   const [form, setForm] = useState(initialFormState);
 
+  /* AUTO CALCULATE TOTAL COST */
   useEffect(() => {
     const price = form.purchasePrice !== "" ? Number(form.purchasePrice) : NaN;
     const qty = form.quantity !== "" ? Number(form.quantity) : NaN;
