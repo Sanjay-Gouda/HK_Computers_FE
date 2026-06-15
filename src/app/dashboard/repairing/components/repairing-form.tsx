@@ -12,7 +12,7 @@ import {
 import {
   createRepairingItem,
   updateRepairingItem,
-} from "@/services/ajax-services"
+} from "@/services/repairing-services"
 import type {
   CreateRepairingPayload,
   ViewRepairingDataResponse,
@@ -202,7 +202,7 @@ export default function RepairingForm({
             Cancel
           </Button>
           <Button type="submit" className="mt-6 cursor-pointer" disabled={isViewMode}>
-            Submit
+            {initialData ? "Update" : "Create"}
           </Button>
         </div>
       </form>

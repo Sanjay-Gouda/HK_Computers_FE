@@ -1,11 +1,6 @@
-// Base URL for API requests
-const DEFAULT_BASE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://hk-computers-be.onrender.com"
-    : "http://localhost:8001";
 
 export const BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || DEFAULT_BASE_URL;
+ process.env.NEXT_PUBLIC_API_BASE_URL ;
 
 export async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> {
     const url = `${BASE_URL}${endpoint}`;

@@ -1,13 +1,21 @@
 import ReportTable from "@/components/report-table";
 import { repairingColumnData } from "./components/repairing-columns";
-import { getAllRepairingItems } from "@/services/ajax-services";
+import { getAllRepairingItems } from "@/services/repairing-services";
 import { RepairingDataResponse } from "@/types/repairing-data";
 import { connection } from "next/server";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function RepairingPage() {
+   const cookieStore = await cookies();
+   const token = cookieStore.get("token")?.value;
   await connection();
 
-  const res:RepairingDataResponse = await getAllRepairingItems()
+  if (!token) {
+      redirect("/login");
+    }
+
+  const res:RepairingDataResponse = await getAllRepairingItems(token);
 
   return (
       <div className="p-6">

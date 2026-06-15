@@ -1,9 +1,10 @@
 import ReportTable from "@/components/report-table";
-import { getAllPurchaseItems } from "@/services/ajax-services";
+import { getAllPurchaseItems } from "@/services/purchase-services";
 import { PurchaseDataResponse } from "@/types/purchase-data";
 import { columnData } from "./components/purchase-columns";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
 
 export default async function NewPurchasePage() {
   const cookieStore = await cookies();

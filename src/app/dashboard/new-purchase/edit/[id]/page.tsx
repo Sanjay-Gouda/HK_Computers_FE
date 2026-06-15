@@ -1,8 +1,8 @@
 
-import { viewPurchaseItem } from "@/services/ajax-services";
+import { viewPurchaseItem } from "@/services/purchase-services";
 import PurchaseForm from "../../components/new-purchase-form";
 import { PurchaseData, ViewPurchaseDataResponse } from "@/types/purchase-data";
- 
+import { cookies } from "next/headers"; 
 
 
 type Props = {
@@ -15,10 +15,11 @@ type Props = {
 
 
 export default async function EditPurchasePage({params}: Props) {
-    
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value;
       const { id } = await params
       
-    const res:ViewPurchaseDataResponse  = await viewPurchaseItem(id)
+    const res:ViewPurchaseDataResponse  = await viewPurchaseItem(id, token);
     const extractedData: PurchaseData = res?.data
    
 

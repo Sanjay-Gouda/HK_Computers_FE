@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 
-import { Login } from "@/services/ajax-services";
+import { Login } from "@/services/auth-services";
 
 type LoginPayload = {
   userName: string;
